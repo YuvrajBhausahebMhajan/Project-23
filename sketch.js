@@ -7,7 +7,7 @@ const Body = Matter.Body;
 
 var engine, world;
 var object;
-// var wall1;
+var wall1, wall2, wall3;
 
 function preload() {
   helicopterIMG = loadImage("helicopter.png");
@@ -20,10 +20,12 @@ function setup() {
   world = engine.world;
   rectMode(CENTER);
 
-  wall1 = new Wall1(200, 300, 50, 50);
+  wall1 = new Wall(350, 650, 100, 20);
+  wall2 = new Wall(300, 620, 20, 75);
+  wall3 = new Wall(400, 620, 20, 75);
 
   var ball_options = {
-    restitution: 1.0,
+    restitution: 1.2,
   };
 
   packageSprite = createSprite(width / 2, 80, 10, 10);
@@ -60,12 +62,15 @@ function setup() {
 }
 
 function draw() {
+  console.log(packageBody.y, "pax");
   Engine.update(engine);
   rectMode(CENTER);
   background(0);
   packageSprite.x = packageBody.position.x;
   packageSprite.y = packageBody.position.y;
   wall1.display();
+  wall2.display();
+  wall3.display();
   drawSprites();
 }
 
